@@ -5,19 +5,22 @@
   
 
   
-  <title>qiyun&#39;s blog</title>
+  <title>cmake教程学习（第一章） | qiyun&#39;s blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="个人博客，记录学习和成长之旅，分享个人知识。">
+  <meta name="description" content="CMakeLists编写单文件编译12345CMakeLists.txt语法主要由命令、注释、空格组成。命令不区分大小写；符号#后面的内容被认为是注释；命令由命令名称、小括号、参数组成，参数之间使用空格进行间隔；   cmake_minimum_required  : 指定配置文件的CMake最低版本； project :  标识项目名称 add_executable  :  将名为xxx.cc的">
 <meta name="keywords" content="qiyun">
-<meta property="og:type" content="website">
-<meta property="og:title" content="qiyun&#39;s blog">
-<meta property="og:url" content="https://github.com/Qiyun2014/index.html">
+<meta property="og:type" content="article">
+<meta property="og:title" content="cmake教程学习（第一章）">
+<meta property="og:url" content="https://github.com/Qiyun2014/2019/06/25/cmake教程学习（第一章）/index.html">
 <meta property="og:site_name" content="qiyun&#39;s blog">
-<meta property="og:description" content="个人博客，记录学习和成长之旅，分享个人知识。">
+<meta property="og:description" content="CMakeLists编写单文件编译12345CMakeLists.txt语法主要由命令、注释、空格组成。命令不区分大小写；符号#后面的内容被认为是注释；命令由命令名称、小括号、参数组成，参数之间使用空格进行间隔；   cmake_minimum_required  : 指定配置文件的CMake最低版本； project :  标识项目名称 add_executable  :  将名为xxx.cc的">
 <meta property="og:locale" content="default">
+<meta property="og:image" content="http://ww3.sinaimg.cn/large/006tNc79gy1g4d7juzh2vj31nj0u011r.jpg">
+<meta property="og:updated_time" content="2019-07-05T01:53:30.558Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="qiyun&#39;s blog">
-<meta name="twitter:description" content="个人博客，记录学习和成长之旅，分享个人知识。">
+<meta name="twitter:title" content="cmake教程学习（第一章）">
+<meta name="twitter:description" content="CMakeLists编写单文件编译12345CMakeLists.txt语法主要由命令、注释、空格组成。命令不区分大小写；符号#后面的内容被认为是注释；命令由命令名称、小括号、参数组成，参数之间使用空格进行间隔；   cmake_minimum_required  : 指定配置文件的CMake最低版本； project :  标识项目名称 add_executable  :  将名为xxx.cc的">
+<meta name="twitter:image" content="http://ww3.sinaimg.cn/large/006tNc79gy1g4d7juzh2vj31nj0u011r.jpg">
   
     <link rel="alternate" href="/atom.xml" title="qiyun&#39;s blog" type="application/atom+xml">
   
@@ -68,70 +71,7 @@
   </div>
 </header>
       <div class="outer">
-        <section id="main">
-  
-    <article id="post-nginx-搭建直播推流-回看服务器" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2019/06/25/nginx-搭建直播推流-回看服务器/" class="article-date">
-  <time datetime="2019-06-25T10:03:10.000Z" itemprop="datePublished">2019-06-25</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/06/25/nginx-搭建直播推流-回看服务器/">nginx 搭建直播推流+回看服务器</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h2 id="nginx"><a href="#nginx" class="headerlink" title="nginx"></a>nginx</h2><p>支持rtmp</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">brew tap denji/nginx</span><br><span class="line">brew install nginx-full --with-rtmp-module</span><br></pre></td></tr></table></figure>
-
-<p>查看安装位置</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">brew info nginx-full</span><br></pre></td></tr></table></figure>
-
-<p>启动nginx服务</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">/usr/local/opt/nginx-full/bin/nginx</span><br></pre></td></tr></table></figure>
-
-<p>重启nginx</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">/usr/local/opt/nginx-full/bin/nginx -s reload</span><br></pre></td></tr></table></figure>
-
-<p>停止nginx</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">/usr/local/opt/nginx-full/bin/nginx -s stop</span><br></pre></td></tr></table></figure>
-
-<h2 id="直播回看"><a href="#直播回看" class="headerlink" title="直播回看"></a>直播回看</h2><p>默认的nginx是不支持rtmp和hls，需要进行配置；<br>修改nginx.conf配置文件；</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">vi /usr/local/etc/nginx/nginx.conf</span><br></pre></td></tr></table></figure>
-
-<p>添加rtmp</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">rtmp &#123;</span><br><span class="line">  server &#123;</span><br><span class="line">      listen 1935;</span><br><span class="line">      #直播流配置</span><br><span class="line">      application rtmplive &#123;</span><br><span class="line">			live on;</span><br><span class="line">			#为 rtmp 引擎设置最大连接数。默认为 off</span><br><span class="line">			max_connections 1024;</span><br><span class="line">       &#125;</span><br><span class="line">      application hls&#123;</span><br><span class="line">    </span><br><span class="line">          live on;</span><br><span class="line">          hls on;</span><br><span class="line">          hls_path /usr/local/var/www/hls;</span><br><span class="line">          hls_fragment 1s;</span><br><span class="line">      &#125;</span><br><span class="line">   &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>http 配置如下</p>
-<p><img src="http://ww1.sinaimg.cn/large/006tNc79gy1g4djya7px2j30ta10mdko.jpg" alt> </p>
-<p>最后生成录制文件</p>
-<p><img src="http://ww2.sinaimg.cn/large/006tNc79gy1g4dk4ktjxyj319i09omz5.jpg" alt></p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="https://github.com/Qiyun2014/2019/06/25/nginx-搭建直播推流-回看服务器/" data-id="cjxpg746p000198v2i15buxku" class="article-share-link">Share</a>
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-cmake教程学习（第一章）" class="article article-type-post" itemscope itemprop="blogPost">
+        <section id="main"><article id="post-cmake教程学习（第一章）" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/2019/06/25/cmake教程学习（第一章）/" class="article-date">
   <time datetime="2019-06-25T01:52:58.000Z" itemprop="datePublished">2019-06-25</time>
@@ -144,8 +84,8 @@
       <header class="article-header">
         
   
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/06/25/cmake教程学习（第一章）/">cmake教程学习（第一章）</a>
+    <h1 class="article-title" itemprop="name">
+      cmake教程学习（第一章）
     </h1>
   
 
@@ -188,11 +128,23 @@
     </footer>
   </div>
   
-</article>
-
+    
+<nav id="article-nav">
+  
+    <a href="/2019/06/25/nginx-搭建直播推流-回看服务器/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          nginx 搭建直播推流+回看服务器
+        
+      </div>
+    </a>
+  
+  
+</nav>
 
   
-
+</article>
 
 </section>
         
